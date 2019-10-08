@@ -1,0 +1,8 @@
+.season-display {
+  color: white;
+  /* display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100vh; */
+  font-size: 4rem;
+}

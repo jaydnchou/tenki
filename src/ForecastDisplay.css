@@ -1,0 +1,16 @@
+.forecast-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: white;
+}
+
+.container {
+  padding: 0 5rem;
+}
+
+.temp {
+  text-align: center;
+  font-size: 6rem;
+}
