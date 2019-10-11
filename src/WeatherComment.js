@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './SeasonDisplay.css';
+import './WeatherComment.css';
 
 
 const seasonConfig = {
   summer: {
-    text: "It's getting hot in here",
+    text: "Get yo pale ass to the beach",
     icon: 'sun'
   },
   winter: {
@@ -22,12 +22,11 @@ export const getSeason = (lat, month) => {
   }
 };
 
-export const SeasonDisplay = ({lat, lon}) => {
-  console.log(lat, lon);
+export const WeatherComment = ({lat, lon}) => {
   const season = getSeason(lat, new Date().getMonth());
   const {text} = seasonConfig[season]
 
   return (
-    <h1 className="season-display">{text}</h1>
+    <h1 className="weather-comment">{text}</h1>
   );
 };

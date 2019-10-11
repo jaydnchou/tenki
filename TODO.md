@@ -1,10 +1,21 @@
-App component - determin location and month
-- [x] Use MDN geolocation API
-- As per MDN docs, people in China may experience geolocation inaccuracy - use workaround
-- Determine which city user is in depending on location
+pass in weather || forecast
+current = weather
+forecast = 3 days
 
-ForecastDisplay component - shows different text/pictures based on props
+Make ForecastDisplay component
+Show City and Country
+
+Housekeeping:
 eslint
-prettier?
+prettier
+tests
 
-Refactor to use Hooks
+Comments: use switch statement
+- negs: Entering hiberation mode
+- pretty but cold af: 0+
+- yep it's gonna be a real stinker: summer 30+
+- Get yo pale ass to the beach 25+ || Time for a cold one
+- Stay home, it's pissin' out - showers
+- Literally gone with wind - windy
+- Cool as a Menthol's kiss 10+  
+- Enjoy this gorgeous day! 20+ 
