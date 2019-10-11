@@ -15,7 +15,6 @@ export const WeatherDisplay = ({lat, lon}) => {
   useEffect(() => {
     async function fetchTemp() {
       const res = await axios.get(url);
-      console.log(res);
 
       if (res.status === 200) {
         const {main, name, sys} = res.data;

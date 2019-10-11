@@ -1,22 +1,24 @@
 .weather-display {
+  position: relative;
+  z-index: 1;
   display: grid;
   align-items: center;
   justify-content: center;
   height: 100vh;
   color: #F3F3F4;
 
-  grid-auto-rows: auto 250px 100px;
+  grid-auto-rows: 1fr 35% 15%;
 }
 
 .temp {
   align-self: end;
   text-align: center;
-  font-size: 10em;
+  font-size: calc(16px + 10vw);
 }
 
 .locality {
   align-self: start;
   padding: 0 3rem;
   color: #4A5859;
-  font-size: 2.5em;
+  font-size: calc(16px + 3vw);
 }

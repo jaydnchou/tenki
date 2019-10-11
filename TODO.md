@@ -3,7 +3,6 @@ current = weather
 forecast = 3 days
 
 Make ForecastDisplay component
-Show City and Country
 
 Housekeeping:
 eslint
