@@ -2,8 +2,20 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {Loader} from './Loader';
 
+import cloud from './assets/icons/cloud.svg';
+import rain from './assets/icons/rain.svg';
+import sun from './assets/icons/sun.svg';
+
 import './ForecastDisplay.css';
 
+
+export const Icon = ({weather}) => {
+  let icon = '';
+  if (weather.includes('Clouds') || weather.includes('Cloudy')) icon = cloud;
+  if (weather.includes('Rain') || weather.includes('Raining')) icon = rain;
+  if (weather.includes('Sunny') || weather.includes('Clear')) icon = sun;
+  return <img src={icon} alt="weather icon" />
+};
 
 export const ForecastDisplay = ({lat, lon}) => {
   const [forecast, setForecast] = useState(null);
@@ -40,12 +52,14 @@ export const ForecastDisplay = ({lat, lon}) => {
           forecast.map(({dt_txt, main, weather}) => {
             const day = new Intl.DateTimeFormat('en-US', {hour: 'numeric'})
               .format(new Date(dt_txt))
-              .replace(',', ' ');
+              .replace(',', ' ')
+              .padStart(5, '0');
   
+            console.log(weather[0].main);
             return (
               <div key={dt_txt} className="item">
                 <span>{day}</span>
-                <span className="text-end">{weather[0].main}</span>
+                <Icon weather={weather[0].main} />
                 <span>{Math.floor(main.temp)}&deg;</span>
               </div>
             );

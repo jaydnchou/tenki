@@ -29,7 +29,7 @@ export const WeatherDisplay = ({lat, lon}) => {
         if (rain && wind) {
           setTemp(main.temp);
           setWindSpeed(wind.speed);
-          setRainVol(rain['1h']);
+          setRainVol(rain['1h'] || setRainVol(rain['3h']));
           setLocality(name);
         }
         if (wind && !rain) {
@@ -39,7 +39,7 @@ export const WeatherDisplay = ({lat, lon}) => {
         }
         if (rain && !wind) {
           setTemp(main.temp);
-          setRainVol(rain['1h']);
+          setRainVol(rain['1h'] || setRainVol(rain['3h']));
           setLocality(name);
         }
         if (!rain && !wind) {

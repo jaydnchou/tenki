@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './WeatherComment.css';
+
 
 export const WeatherComment = ({temp, wind, rain}) => {
   let comment = '';
@@ -13,5 +15,5 @@ export const WeatherComment = ({temp, wind, rain}) => {
   if (temp >= 25 && temp <= 30) return comment = "Get yo pale ass to the beach";
   if (temp >= 30) return comment = "Yep, it's gonna be a real stinker";
  
-  return <div>{comment}</div>;
+  return <div className="weather-comment">{comment}</div>;
 };
