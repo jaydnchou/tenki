@@ -18,3 +18,7 @@
 .text-end {
   text-align: end;
 }
+
+.icon {
+  justify-content: center;
+}

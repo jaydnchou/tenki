@@ -7,6 +7,17 @@ body {
   overflow: hidden;
 }
 
+.content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #F3F3F4;
+  font-family: "Quicksand", "sans-serif";
+}
+
 .bgd {
   position: absolute;
   z-index: 0;

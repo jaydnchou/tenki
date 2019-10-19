@@ -41,6 +41,7 @@
 
 .active {
   background: white;
+  cursor: default;
 }
 
 .temp {

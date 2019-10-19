@@ -5,6 +5,8 @@ import {Loader} from './Loader';
 import cloud from './assets/icons/cloud.svg';
 import rain from './assets/icons/rain.svg';
 import sun from './assets/icons/sun.svg';
+import wind from './assets/icons/wind.svg';
+import snow from './assets/icons/snow.svg';
 
 import './ForecastDisplay.css';
 
@@ -13,8 +15,14 @@ export const Icon = ({weather}) => {
   let icon = '';
   if (weather.includes('Clouds') || weather.includes('Cloudy')) icon = cloud;
   if (weather.includes('Rain') || weather.includes('Raining')) icon = rain;
+  if (weather.includes('Snow') || weather.includes('Snowing')) icon = snow;
+  if (weather.includes('Wind') || weather.includes('Windy')) icon = wind;
   if (weather.includes('Sunny') || weather.includes('Clear')) icon = sun;
-  return <img src={icon} alt="weather icon" />
+  return (
+    <div className="icon">
+      <img src={icon} alt="weather icon" />
+    </div>
+  );
 };
 
 export const ForecastDisplay = ({lat, lon}) => {
