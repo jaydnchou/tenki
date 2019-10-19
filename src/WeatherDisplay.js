@@ -51,38 +51,43 @@ export const WeatherDisplay = ({lat, lon}) => {
     fetchTemp();
   }, [url]);
 
+
+  const Slider = () => (
+    <div className="slider">
+      <button
+        className={prevBtnActive ? "btn active" : "btn"}
+        onClick={(() => {
+          setPrevBtnActive(true);
+          setNextBtnActive(false);
+          setShowForecast(false);
+        })} />
+      <button
+        className={nextBtnActive ? "btn active" : "btn"}
+        onClick={(() => {
+          setPrevBtnActive(false);
+          setNextBtnActive(true);
+          setShowForecast(true);
+        })} />
+    </div>
+  );
+
   return (
     <div className="weather-display">
       {
         temp ? (
           <React.Fragment>
             <h3 className="header">
-              {showForecast ? "Forecast" : "Today's weather"}
+              {!showForecast ? "Today's weather" : "Forecast"}
             </h3>
             <h1 className="temp">{Math.floor(temp)}&deg;</h1>
-            <div>
-              {showForecast ? <ForecastDisplay lat={lat} lon={lon} /> : (
+            {
+             !showForecast ? (
                 <h1 className="weather-comment">
                   <WeatherComment temp={temp} wind={windSpeed} rain={rainVol} />
                 </h1>
-              )}
-            </div>
-            <div className="scrollBtns">
-              <button
-                className={prevBtnActive ? "btn active" : "btn"}
-                onClick={(() => {
-                  setPrevBtnActive(true);
-                  setNextBtnActive(false);
-                  setShowForecast(false);
-                })} />
-              <button
-                className={nextBtnActive ? "btn active" : "btn"}
-                onClick={(() => {
-                  setPrevBtnActive(false);
-                  setNextBtnActive(true);
-                  setShowForecast(true);
-                })} />
-            </div>
+              ) : <ForecastDisplay lat={lat} lon={lon} />
+            }
+            <Slider />
             <h2 className="locality">{locality}</h2>
           </React.Fragment>
         ) : <Loader />

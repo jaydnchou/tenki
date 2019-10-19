@@ -63,12 +63,18 @@ export const ForecastDisplay = ({lat, lon}) => {
               .replace(',', ' ')
               .padStart(5, '0');
   
-            console.log(weather[0].main);
+            console.log(weather[0].main, day);
             return (
               <div key={dt_txt} className="item">
-                <span>{day}</span>
-                <Icon weather={weather[0].main} />
-                <span>{Math.floor(main.temp)}&deg;</span>
+                {
+                  day ? (
+                    <React.Fragment>
+                      <span>{day}</span>
+                      <Icon weather={weather[0].main} />
+                      <span>{Math.floor(main.temp)}&deg;</span>
+                    </React.Fragment>
+                  ) : <span>That's all for today!</span>
+                }
               </div>
             );
           })
@@ -77,4 +83,3 @@ export const ForecastDisplay = ({lat, lon}) => {
     </div>
   );
 };
-
