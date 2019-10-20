@@ -15,8 +15,8 @@
   grid-gap: 30px;
 }
 
-.text-end {
-  text-align: end;
+.block {
+  display: block;
 }
 
 .icon {

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {Loader} from './Loader';
 
 import cloud from './assets/icons/cloud.svg';
 import rain from './assets/icons/rain.svg';
@@ -13,11 +12,29 @@ import './ForecastDisplay.css';
 
 export const Icon = ({weather}) => {
   let icon = '';
-  if (weather.includes('Clouds') || weather.includes('Cloudy')) icon = cloud;
-  if (weather.includes('Rain') || weather.includes('Raining')) icon = rain;
-  if (weather.includes('Snow') || weather.includes('Snowing')) icon = snow;
-  if (weather.includes('Wind') || weather.includes('Windy')) icon = wind;
-  if (weather.includes('Sunny') || weather.includes('Clear')) icon = sun;
+
+  if (weather) {
+    switch (true) {
+      case (weather.includes('Clouds') || weather.includes('Cloudy')):
+        icon = cloud;
+        break;
+      case (weather.includes('Rain') || weather.includes('Raining')):
+        icon = rain;
+        break;
+      case (weather.includes('Snow') || weather.includes('Snowing')):
+        icon = snow;
+        break;
+      case (weather.includes('Wind') || weather.includes('Windy')):
+        icon = wind;
+        break;
+      case (weather.includes('Clear') || weather.includes('Sunny')):
+        icon = sun;
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <div className="icon">
       <img src={icon} alt="weather icon" />
@@ -56,29 +73,22 @@ export const ForecastDisplay = ({lat, lon}) => {
   return (
     <div className="forecast-display">
       {
-        forecast ? (
+        forecast && forecast.length ? (
           forecast.map(({dt_txt, main, weather}) => {
             const day = new Intl.DateTimeFormat('en-US', {hour: 'numeric'})
               .format(new Date(dt_txt))
               .replace(',', ' ')
               .padStart(5, '0');
   
-            console.log(weather[0].main, day);
             return (
               <div key={dt_txt} className="item">
-                {
-                  day ? (
-                    <React.Fragment>
-                      <span>{day}</span>
-                      <Icon weather={weather[0].main} />
-                      <span>{Math.floor(main.temp)}&deg;</span>
-                    </React.Fragment>
-                  ) : <span>That's all for today!</span>
-                }
+                <span>{day}</span>
+                <Icon weather={weather[0].main} />
+                <span>{Math.floor(main.temp)}&deg;</span>
               </div>
             );
           })
-        ) : <Loader />
+        ) : <span className="item block">That's all for today!</span>
       }
     </div>
   );

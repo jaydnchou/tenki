@@ -21,36 +21,37 @@ export const WeatherDisplay = ({lat, lon}) => {
   const url = `${process.env.REACT_APP_OPEN_WEATHER_URL}weather?${params}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
 
   useEffect(() => {
-    async function fetchTemp() {
+    const fetchTemp = async () => {
       const res = await axios.get(url);
       const {main, wind, rain, name} = res.data;
 
       if (res.status === 200) {
-        if (rain && wind) {
-          setTemp(main.temp);
-          setWindSpeed(wind.speed);
-          setRainVol(rain['1h'] || setRainVol(rain['3h']));
-          setLocality(name);
-        }
-        if (wind && !rain) {
-          setTemp(main.temp);
-          setWindSpeed(wind.speed);
-          setLocality(name);
-        }
-        if (rain && !wind) {
-          setTemp(main.temp);
-          setRainVol(rain['1h'] || setRainVol(rain['3h']));
-          setLocality(name);
-        }
-        if (!rain && !wind) {
-          setTemp(main.temp);
-          setLocality(name);
+        switch (true) {
+          case (rain && wind):
+            setTemp(main.temp);
+            setWindSpeed(wind.speed);
+            setRainVol(rain['1h'] || setRainVol(rain['3h']));
+            setLocality(name);
+            break;
+          case (!rain && wind):
+            setTemp(main.temp);
+            setWindSpeed(wind.speed);
+            setLocality(name);
+            break;
+          case (rain && !wind):
+            setTemp(main.temp);
+            setRainVol(rain['1h'] || setRainVol(rain['3h']));
+            setLocality(name);
+            break;
+          default:
+            setTemp(main.temp);
+            setLocality(name);
+            break;
         }
       }
     }
     fetchTemp();
   }, [url]);
-
 
   const Slider = () => (
     <div className="slider">
