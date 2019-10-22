@@ -11,13 +11,25 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "precommit": "lint-staged",
     "lint": "eslint .",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn precommit"
+    }
+  },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": ["react-app", "prettier"],
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true,
+      "jest": true
+    }
   },
   "browserslist": {
     "production": [
@@ -30,5 +42,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-jest": "^22.20.0",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2"
   }
 }
